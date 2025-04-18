@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fraud Detection - Gas & Power</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f6fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            color:rgb(54, 132, 240);
+            margin-top: 30px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        input[type="submit"] {
+            background-color:rgb(20, 133, 220);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color:rgb(93, 228, 83);
+        }
+
+        .result-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color:rgb(85, 236, 165);
+            border-left: 5px solidrgb(48, 180, 73);
+            border-radius: 6px;
+        }
+
+        pre {
+            background-color:rgb(59, 206, 232);
+            padding: 10px;
+            overflow-x: auto;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Fraud Detection - Gas and Power</h2>
+
+    <form method="POST">
+        {% for feature in ['disrict', 'client_id', 'client_catg', 'region', 'creation_date',
+                           'tarif_type', 'counter_number', 'counter_code', 'reading_remarque',
+                           'counter_coefficient', 'consommation_level_1', 'counter_type'] %}
+            <label for="{{ feature }}">{{ feature.replace('_', ' ').title() }}</label>
+            <input type="text" id="{{ feature }}" name="{{ feature }}">
+        {% endfor %}
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+    <div class="result-container">
+        <h3>Prediction: {{ prediction }}</h3>
+        <h4>SHAP Explanation (Raw Values):</h4>
+        <pre>{{ shap_summary }}</pre>
+    </div>
+    {% endif %}
+
+</body>
+</html>
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fraud Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h2>Fraud Detection - Gas and Power</h2>
+    <form method="POST">
+        {% for feature in ['disrict', 'client_id', 'client_catg', 'region', 'creation_date',
+                           'tarif_type', 'counter_number', 'counter_code', 'reading_remarque',
+                           'counter_coefficient', 'consommation_level_1', 'counter_type'] %}
+            <label>{{ feature }}</label><br>
+            <input type="text" name="{{ feature }}"><br><br>
+        {% endfor %}
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+        <h3>Prediction: {{ prediction }}</h3>
+        <h4>SHAP Explanation (Raw Values):</h4>
+        <pre>{{ shap_summary }}</pre>
+    {% endif %}
+</body>
+</html>-->
