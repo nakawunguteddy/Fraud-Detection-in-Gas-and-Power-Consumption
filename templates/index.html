@@ -100,32 +100,3 @@
 </body>
 </html>
 
-
-
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Fraud Detection</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
-</head>
-<body>
-    <h2>Fraud Detection - Gas and Power</h2>
-    <form method="POST">
-        {% for feature in ['disrict', 'client_id', 'client_catg', 'region', 'creation_date',
-                           'tarif_type', 'counter_number', 'counter_code', 'reading_remarque',
-                           'counter_coefficient', 'consommation_level_1', 'counter_type'] %}
-            <label>{{ feature }}</label><br>
-            <input type="text" name="{{ feature }}"><br><br>
-        {% endfor %}
-        <input type="submit" value="Predict">
-    </form>
-
-    {% if prediction %}
-        <h3>Prediction: {{ prediction }}</h3>
-        <h4>SHAP Explanation (Raw Values):</h4>
-        <pre>{{ shap_summary }}</pre>
-    {% endif %}
-</body>
-</html>-->
