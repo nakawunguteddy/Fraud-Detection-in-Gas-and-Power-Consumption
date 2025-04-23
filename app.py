@@ -1,8 +1,14 @@
 from flask import Flask, render_template, request
 import numpy as np
 from utils import preprocess_input, get_shap_values, model
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
+app.secret_key = os.getenv("SECRET_KEY", "fallback_key")
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -20,4 +26,6 @@ def index():
     return render_template('index.html', prediction=prediction, shap_summary=shap_summary)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    port = int(os.getenv("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+
