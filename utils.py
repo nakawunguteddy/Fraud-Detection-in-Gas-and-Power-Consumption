@@ -16,7 +16,8 @@ SELECTED_FEATURES = ['disrict', 'client_id', 'client_catg', 'region', 'creation_
 label_encoders = {}
 
 # Load training data for background reference 
-X_train_full = pd.read_csv("C:\\Users\\user\\Desktop\\DATASET\\hybrid_sampled_data.csv")  
+X_train_full = pd.read_csv("hybrid_sampled_data.csv")
+#X_train_full = pd.read_csv("C:\\Users\\user\\Desktop\\DATASET\\hybrid_sampled_data.csv")  
 
 # Sample 100 rows for SHAP background data
 background_data = shap.kmeans(X_train_full[SELECTED_FEATURES], 10)
